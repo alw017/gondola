@@ -1,17 +1,43 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import Frame from './components/Frame.vue'
+import Header from './components/Header.vue'
+import Content from './components/Content.vue'
 </script>
 
+<script>
+export default {
+    components: {
+        Content
+    },
+    data() {
+        return{
+            selectedOption: "home"
+        }
+    },
+    methods: {
+        handleNav(nav) {
+            console.log(nav);
+            switch(nav) {
+                case "home":
+                    this.selectedOption = "home";
+                    break;
+                case "proj":
+                    this.selectedOption = "projects";
+                    break;
+                case "contact":
+                    this.selectedOption = "contact";
+                break;
+            }
+        }
+    }
+}
+</script>
+
+
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+    <Frame></Frame>
+    <Header @home-click="handleNav('home')" @project-click="handleNav('proj')" @contact-click="handleNav('contact')"></Header>
+    <Content :currentSelected="selectedOption"></Content>
 </template>
 
 <style scoped>
