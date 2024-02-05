@@ -28,9 +28,9 @@ defineProps({
 }
 
 header {
+    z-index: 100;
     position: fixed;
-    height:30%;
-    left: 40px;
+    left: 4vmin;
     top: 50%;
     transform: translate(0, -50%);
     color:antiquewhite;

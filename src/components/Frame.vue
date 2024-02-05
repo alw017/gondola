@@ -24,10 +24,10 @@ defineProps({
 }
 .frame-container{
     position:fixed;
-    left: 20px;
-    right: 20px;
-    top: 20px;
-    bottom: 20px;
+    left: 2vmin;
+    right: 2vmin;
+    top: 2vmin;
+    bottom: 2vmin;
 }
 
 .frame-top {
