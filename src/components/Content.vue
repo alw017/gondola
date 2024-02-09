@@ -112,7 +112,7 @@ import { createHydrationRenderer, createRenderer } from 'vue';
 }
 .home {
     color:antiquewhite;
-    width:120px;
+    width:200px;
     position: absolute;
     top:50%;
     transform: translate(0, -50%);
