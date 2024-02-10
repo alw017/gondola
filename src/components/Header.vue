@@ -8,21 +8,58 @@ defineProps({
 
 <template>
 <header>
-    <h1>
+    <h1 class="header-title">
         Alexander Wang
     </h1>
     <p class="header-subtitle">Aspiring Software Developer and Engineer</p>
     <nav>
         <ol>
-            <li @click="$emit('homeClick')">Home</li>
-            <li @click="$emit('projectClick')">Projects</li>
-            <li @click="$emit('contactClick')">Contact</li>
+            <li class="text" @click="$emit('homeClick')">
+                <Transition mode="out-in">
+                    <div v-if="msg==='home'"><b>&#8212</b></div>
+                    <div v-else-if="msg!='home'">Home</div>
+                </Transition>
+            </li>
+            <li class="text" @click="$emit('projectClick')">
+                <Transition mode="out-in">
+                    <div v-if="msg==='projects'"><b>&#8212</b></div>
+                    <div v-else-if="msg!='projects'">Projects</div>
+                </Transition>
+            </li>
+            <li class="text" @click="$emit('contactClick')">
+                <Transition mode="out-in">
+                    <div v-if="msg==='contact'"><b>&#8212</b></div>
+                    <div v-else-if="msg!='contact'">Contact</div>
+                </Transition>
+            </li>
         </ol>
     </nav>
 </header>
 </template>
 
 <style scoped>
+
+.v-enter-active {
+    transition: opacity 200ms cubic-bezier(0.1, 0.4, 0.12, 1);
+}
+.v-leave-active {
+    transition: opacity 200ms cubic-bezier(0.1, 0.4, 0.2, 1);
+    transition-delay: 300ms;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+.text:hover {
+    opacity: 0.4;
+}
+
+.text { 
+    transition: opacity 300ms;
+    transition-timing-function: cubic-bezier(0.1, 0.4, 0.12, 1);
+}
+
 .header-subtitle {
     margin-top: 5px;
 }

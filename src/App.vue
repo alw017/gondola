@@ -38,7 +38,7 @@ export default {
 <template>
     <Frame></Frame>
     <Mask></Mask>
-    <Header @home-click="handleNav('home')" @project-click="handleNav('proj')" @contact-click="handleNav('contact')"></Header>
+    <Header @home-click="handleNav('home')" @project-click="handleNav('proj')" @contact-click="handleNav('contact')" :msg="selectedOption"></Header>
     <Content :currentSelected="selectedOption"></Content>
 </template>
 

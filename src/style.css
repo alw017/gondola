@@ -6,6 +6,10 @@
     user-select: none; /* Standard syntax */
 }
 
+:root {
+    --content-padding: calc(2vmin + 150px);
+}
+
 #app {
     position: fixed;
     top: 0;
