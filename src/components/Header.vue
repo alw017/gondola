@@ -58,16 +58,26 @@ defineProps({
 .text { 
     transition: opacity 300ms;
     transition-timing-function: cubic-bezier(0.1, 0.4, 0.12, 1);
+    font-size:20px;
+    cursor:pointer;
 }
 
 .header-subtitle {
     margin-top: 5px;
+    font-size: 25px;
+}
+.header-title{ 
+    font-size: 60px;
+    font-weight: 400;
 }
 
 header {
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 200;
+    font-style:normal;
     z-index: 100;
     position: fixed;
-    left: 4vmin;
+    left: 8vmin;
     top: 50%;
     transform: translate(0, -50%);
     color:antiquewhite;

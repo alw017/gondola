@@ -67,12 +67,14 @@ import { createHydrationRenderer, createRenderer } from 'vue';
             <section class="full-window flex-cards" v-if="currentSelected === 'projects'">
                     <div id="flex-card-container" class="flex-card-container" :style="style">
                         <div class="card" v-for="card in cards" :class="{ selected: card.isSelected, focused: card.isFocused, unfocused: !card.isFocused }" @mouseenter="handleFocus(card)" @mouseleave="handleUnfocus(card)" @click="handleClick(card)">
-                            <h2>
-                                {{ card.title }}
-                            </h2>
-                            <p>
-                                {{ card.body }}
-                            </p>
+                            <div class="card-content">
+                                <h2>
+                                    {{ card.title }}
+                                </h2>
+                                <p>
+                                    {{ card.body }}
+                                </p>
+                            </div>
                         </div>
                     </div>
             </section>
@@ -84,8 +86,8 @@ import { createHydrationRenderer, createRenderer } from 'vue';
             <section class="full-window" v-else-if="currentSelected === 'contact'" >
                 <div class="contact">
                     <div style="padding-bottom:2vmin">Email: wang.alexander204@gmail.com</div>
-                    <div>Linkedin <i class="material-icons">arrow_outward</i></div>
-                    <div>Github <i class="material-icons">arrow_outward</i></div>
+                    <a rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/alexander-wang-8b6bb41ba/">Linkedin <i class="material-icons">arrow_outward</i></a>
+                    <a rel="noopener noreferrer" target="_blank" href="https://www.github.com/alw017">Github <i class="material-icons">arrow_outward</i></a>
                 </div>
             </section>
         </Transition>
@@ -129,7 +131,7 @@ import { createHydrationRenderer, createRenderer } from 'vue';
     flex-direction:column;
     padding-top: var(--content-padding);
     padding-left: calc(2vmin + 40%);
-    padding-right:4vmin;
+    padding-right:8vmin;
     padding-bottom: var(--content-padding);
     transform:translate3d(0px, 0px, 0px);
     transition: transform;
@@ -142,6 +144,11 @@ import { createHydrationRenderer, createRenderer } from 'vue';
     height: max(50vh, 400px);
     margin-bottom: 2vmin;
     background-color:grey;
+    border-radius:2vmin;
+}
+
+.card-content {
+    padding: 2vmin;
 }
 
 .card:hover {
@@ -166,11 +173,12 @@ import { createHydrationRenderer, createRenderer } from 'vue';
 }
 .home {
     color:antiquewhite;
-    width:200px;
+    width: 250px;
     position: absolute;
     top:50%;
     transform: translate(0, -50%);
-    right:4vmin;
+    right:8vmin;
+    font-weight: 400;
 }
 
 .projects {
@@ -182,10 +190,25 @@ import { createHydrationRenderer, createRenderer } from 'vue';
     height: 100%;
 }
 
+i {
+    transform: translate3d(-20%, 18%, 0);
+}
+
+a {
+    display:block;
+    color: antiquewhite;
+    text-decoration: none;
+    transition: opacity 300ms;
+    transition-timing-function: cubic-bezier(0.1, 0.4, 0.12, 1);
+}
+
+a:hover {
+    opacity: 0.4;
+}
 .contact {
     display:block;
     position: absolute;
-    right:4vmin;
+    right:16vmin;
     top:50%;
     transform: translate(0, -50%);
     color:antiquewhite;

@@ -3,6 +3,7 @@ import Frame from './components/Frame.vue'
 import Header from './components/Header.vue'
 import Content from './components/Content.vue'
 import Mask from './components/Mask.vue'
+import LoadIn from './components/LoadIn.vue'
 </script>
 
 <script>
@@ -36,6 +37,7 @@ export default {
 
 
 <template>
+    <LoadIn></LoadIn>
     <Frame></Frame>
     <Mask></Mask>
     <Header @home-click="handleNav('home')" @project-click="handleNav('proj')" @contact-click="handleNav('contact')" :msg="selectedOption"></Header>

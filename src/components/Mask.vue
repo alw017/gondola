@@ -10,7 +10,7 @@
 .mask-top, .mask-bottom {
     z-index: 16;
     position: fixed;
-    height: 2vmin;
+    height: 4vmin;
     width:100%;
     left: 0;
     background-color: #1f1f1f;
