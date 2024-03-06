@@ -15,6 +15,7 @@
         },
         data() {
            return {
+                showCopied: false,
                 ypos: 0,
                 cardSelected: null,
                 selecedCardPosition: 0,
@@ -38,7 +39,9 @@
                 if(-1 * this.ypos < 0) {
                     this.ypos = 0;
                 }
-                let max_transform = parseFloat(window.getComputedStyle(cardContainer).getPropertyValue('height'))+2*parseFloat(window.getComputedStyle(cardContainer).getPropertyValue('padding-top'))-window.innerHeight;
+                let max_transform = parseFloat(window.getComputedStyle(cardContainer).getPropertyValue('height')) +
+                                    2*parseFloat(window.getComputedStyle(cardContainer).getPropertyValue('padding-top')) -
+                                    window.innerHeight;
                 if (-1 * this.ypos > max_transform){
                     this.ypos = -max_transform;
                 }
@@ -64,6 +67,11 @@
             },
             handleUnfocus(card) {
                 card.isFocused = false;
+            },
+            copyToClipBoard(event) {
+                this.showCopied = true;
+                navigator.clipboard.writeText("wang.alexander204@gmail.com");
+                setTimeout(() => this.showCopied = false, 2000)
             }
         }
     }   
@@ -107,7 +115,12 @@
             </section>
             <section class="full-window" v-else-if="currentSelected === 'contact'" >
                 <div class="contact">
-                    <div style="padding-bottom:2vmin">Email: wang.alexander204@gmail.com</div>
+                    
+                    <div class="email-text" @click="copyToClipBoard" style="padding-bottom:2vmin">
+                        <Transition name="popup"><div class="copy-popup" v-if="showCopied">Copied!</div></Transition>
+                        Email: wang.alexander204@gmail.com 
+                        <i class="material-icons copy-symbol">content_copy</i>
+                    </div>
                     <a rel="noopener noreferrer" target="_blank" href="https://www.linkedin.com/in/alexander-wang-8b6bb41ba/">Linkedin <i class="material-icons">arrow_outward</i></a>
                     <a rel="noopener noreferrer" target="_blank" href="https://www.github.com/alw017">Github <i class="material-icons">arrow_outward</i></a>
                 </div>
@@ -117,6 +130,16 @@
 </template>
 
 <style scoped>
+
+.popup-enter-active,
+.popup-leave-active {
+    transition: opacity 300ms cubic-bezier(0.1, 0.4, 0.2, 1);
+}
+
+.popup-enter-from ,
+.popup-leave-to {
+    opacity: 0
+}
 
 .v-enter-active,
 .v-leave-active {
@@ -234,6 +257,28 @@
 
 i {
     transform: translate3d(-20%, 18%, 0);
+}
+
+.copy-popup {
+    position:absolute;
+    left: 50%;
+    top: -20%;
+    transform: translate(-50%, 0);
+    font-size:15px;
+    padding:5px;
+}
+.copy-symbol {
+    transform: translate3d(-15%, 22%, 0) scale(0.8);
+    transition: opacity 300ms;
+    transition-timing-function: cubic-bezier(0.1,0.4,0.12, 1);
+}
+
+.email-text:hover > .copy-symbol {
+    opacity: 0.4;
+}
+
+.email-text {
+    cursor:pointer;
 }
 
 a {
