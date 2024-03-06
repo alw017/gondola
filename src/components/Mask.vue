@@ -13,7 +13,7 @@
     height: 4vmin;
     width:100%;
     left: 0;
-    background-color: #1f1f1f;
+    background-color: #0d183d;
     opacity: 0.9;
     overflow:hidden;
 }

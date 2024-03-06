@@ -19,7 +19,7 @@ defineProps({
 
 .frame {
     position: absolute;
-    background-color:antiquewhite;
+    background-color: gold;
     opacity:0.45;
 }
 .frame-container{
