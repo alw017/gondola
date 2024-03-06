@@ -224,10 +224,10 @@
 
 .content-container {
     position: fixed;
-    left:2vmin;
-    top:2vmin;
-    right:2vmin;
-    bottom:2vmin;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
     overflow:hidden;
 }
 .full-window {

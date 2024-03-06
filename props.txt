@@ -1,0 +1,54 @@
+how to pass data between components: USE PROPS!
+in the component generating the data:
+
+<script setup>
+    data: type
+<script>
+
+
+<template>
+<header>
+    <h1 class="header-title">
+        Alexander Wang
+    </h1>
+    <p class="header-subtitle">Aspiring Software Developer and Engineer</p>
+    <nav>
+        <ol>
+            <li class="text" @click="$emit('homeClick')">
+                <Transition mode="out-in">
+                    <div v-if="msg==='home'"><b>&#8212</b></div>
+                    <div v-else-if="msg!='home'">Home</div>
+                </Transition>
+            </li>
+            <li class="text" @click="$emit('projectClick')">
+                <Transition mode="out-in">
+                    <div v-if="msg==='projects'"><b>&#8212</b></div>
+                    <div v-else-if="msg!='projects'">Projects</div>
+                </Transition>
+            </li>
+            <li class="text" @click="$emit('contactClick')">
+                <Transition mode="out-in">
+                    <div v-if="msg==='contact'"><b>&#8212</b></div>
+                    <div v-else-if="msg!='contact'">Contact</div>
+                </Transition>
+            </li>
+        </ol>
+    </nav>
+</header>
+</template>
+
+use emits.
+
+in parent:
+
+
+export default {
+    components: {
+        Content
+    },
+
+
+defineprops in both child elements.
+
+emit emits to the outer parent.
+

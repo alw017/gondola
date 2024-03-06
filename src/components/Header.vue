@@ -14,19 +14,19 @@ defineProps({
     <p class="header-subtitle">Aspiring Software Developer and Engineer</p>
     <nav>
         <ol>
-            <li class="text" @click="$emit('homeClick')">
+            <li class="text" @click="$emit('handleNav', 'home')">
                 <Transition mode="out-in">
                     <div v-if="msg==='home'"><b>&#8212</b></div>
                     <div v-else-if="msg!='home'">Home</div>
                 </Transition>
             </li>
-            <li class="text" @click="$emit('projectClick')">
+            <li class="text" @click="$emit('handleNav', 'proj')">
                 <Transition mode="out-in">
-                    <div v-if="msg==='projects'"><b>&#8212</b></div>
-                    <div v-else-if="msg!='projects'">Projects</div>
+                    <div v-if="msg==='proj'"><b>&#8212</b></div>
+                    <div v-else-if="msg !='proj'">Projects</div>
                 </Transition>
             </li>
-            <li class="text" @click="$emit('contactClick')">
+            <li class="text" @click="$emit('handleNav', 'contact')">
                 <Transition mode="out-in">
                     <div v-if="msg==='contact'"><b>&#8212</b></div>
                     <div v-else-if="msg!='contact'">Contact</div>
@@ -72,6 +72,7 @@ defineProps({
 }
 
 header {
+    width: calc(40% - 10vmin);
     font-family: "Josefin Sans", sans-serif;
     font-weight: 200;
     font-style:normal;
