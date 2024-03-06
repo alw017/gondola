@@ -1,5 +1,4 @@
 <script setup>
-import { createHydrationRenderer, createRenderer } from 'vue';
 
     defineProps({
         currentSelected: String,
@@ -17,6 +16,8 @@ import { createHydrationRenderer, createRenderer } from 'vue';
         data() {
            return {
                 ypos: 0,
+                cardSelected: null,
+                selecedCardPosition: 0,
                 cards: [{title: "Internship Project", body: "blah blah", id: 0, isSelected: false, isFocused: false}, 
                         {title: "Personal Project", body: "blah blah", id: 1, isSelected:false, isFocused: false}, 
                         {title: "Personal Project 2", body: "blah blah", id:2, isSelected:false, isFocused: false}]
@@ -29,7 +30,7 @@ import { createHydrationRenderer, createRenderer } from 'vue';
         },
         methods: {
             handleScroll(event) {
-                if(this.currentSelected != 'projects') {
+                if(this.currentSelected != 'projects' || this.cardSelected == true) {
                     return;
                 }
                 var cardContainer = document.getElementById('flex-card-container');
@@ -49,7 +50,14 @@ import { createHydrationRenderer, createRenderer } from 'vue';
                  * remove all non selected cards from dom display?
                  * disablescroll handling,etc. 
                  */
-                card.isSelected = !card.isSelected;
+                console.log("selected")
+                card.isSelected = true;
+                this.cardSelected = card;
+            },
+            handleExit() {
+                console.log(this.cardSelected)
+                this.cardSelected.isSelected = !this.cardSelected.isSelected;
+                this.cardSelected = null;
             },
             handleFocus(card) {
                 card.isFocused = true;
@@ -65,9 +73,23 @@ import { createHydrationRenderer, createRenderer } from 'vue';
     <main class="content-container">
         <Transition mode="out-in">
             <section class="full-window flex-cards" v-if="currentSelected === 'projects'">
+                    <div v-if="cardSelected != null" class="fullscreen-card-display" id="selected-card-display">
+                        <div class="card-content">
+                            <Transition>
+                                <div v-if="cardSelected" @click.stop="handleExit(card)" class="exit-button">X</div>
+                            </Transition>
+                            <h2>
+                            </h2>
+                            <p>
+                            </p>
+                        </div>
+                    </div>
                     <div id="flex-card-container" class="flex-card-container" :style="style">
-                        <div class="card" v-for="card in cards" :class="{ selected: card.isSelected, focused: card.isFocused, unfocused: !card.isFocused }" @mouseenter="handleFocus(card)" @mouseleave="handleUnfocus(card)" @click="handleClick(card)">
+                        <div class="card" v-for="card in cards" :id ="'card' + card.id" :class="{ selected: card.isSelected, focused: card.isFocused, unfocused: !card.isFocused }" @mouseenter="handleFocus(card)" @mouseleave="handleUnfocus(card)" @click="handleClick(card)">
                             <div class="card-content">
+                                <Transition>
+                                    <div v-if="card.isSelected" @click.stop="handleExit(card)" class="exit-button">X</div>
+                                </Transition>
                                 <h2>
                                     {{ card.title }}
                                 </h2>
@@ -107,7 +129,27 @@ import { createHydrationRenderer, createRenderer } from 'vue';
 }
 
 .selected {
+    z-index: 9000;
 
+}
+
+.fullscreen-card-display {
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color:aqua; 
+    z-index: 10000;
+}
+
+.exit-button {
+    position:absolute;
+    width: 10px;
+    z-index: 20;
+    height: 10px;
+    top: 2vmin;
+    right: 2vmin;
 }
 
 .focused {
@@ -159,17 +201,17 @@ import { createHydrationRenderer, createRenderer } from 'vue';
 
 .content-container {
     position: fixed;
-    left:0;
-    top:0;
+    left:2vmin;
+    top:2vmin;
+    right:2vmin;
+    bottom:2vmin;
     overflow:hidden;
-    width: 100%;
-    height: 100%;
-    z-index: 15;
 }
 .full-window {
     display:block;
     width: 100%;
     min-height: 100%;
+    z-index: 100;
 }
 .home {
     color:antiquewhite;

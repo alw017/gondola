@@ -75,7 +75,7 @@ header {
     font-family: "Josefin Sans", sans-serif;
     font-weight: 200;
     font-style:normal;
-    z-index: 100;
+    z-index: 80;
     position: fixed;
     left: 8vmin;
     top: 50%;

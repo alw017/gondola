@@ -38,10 +38,10 @@ export default {
 
 <template>
     <LoadIn></LoadIn>
+    <Content :currentSelected="selectedOption"></Content>
     <Frame></Frame>
     <Mask></Mask>
     <Header @home-click="handleNav('home')" @project-click="handleNav('proj')" @contact-click="handleNav('contact')" :msg="selectedOption"></Header>
-    <Content :currentSelected="selectedOption"></Content>
 </template>
 
 <style scoped>
