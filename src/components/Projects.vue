@@ -11,7 +11,7 @@
                 showCopied: false,
                 cardSelected: null,
                 selecedCardPosition: 0,
-                cards: [{title: "Internship Project", body: "blah blah", id: 0, isSelected: false, isFocused: false}, 
+                cards: [{title: "Internship at Wealthland Capital LLC", body: "blah blah", id: 0, isSelected: false, isFocused: false}, 
                         {title: "Personal Project", body: "blah blah", id: 1, isSelected:false, isFocused: false}, 
                         {title: "Personal Project 2", body: "blah blah", id:2, isSelected:false, isFocused: false}]
            } 
@@ -52,15 +52,15 @@
 
 <template>
     <section class="flex-cards">
-        <Transition name="card">
+        <Transition>
             <div v-if="cardSelected != null" class="fullscreen-card-display" id="selected-card-display">
-                <div class="card-content">
-                    <div v-if="cardSelected" @click.stop="handleExit()" class="exit-button">X</div>
-                    <h2>
-                    </h2>
-                    <p>
-                    </p>
-                </div>
+                <div v-if="cardSelected" @click.stop="handleExit()" class="exit-button"><i class="material-icons">close</i></div>
+                <h1 class="f-title">
+                    {{ cardSelected.title }}
+                </h1>
+                <p class="f-body">
+                    {{ cardSelected.body }}
+                </p>
             </div>
         </Transition>
         <div id="flex-card-container" class="flex-card-container" :style="style">
@@ -79,6 +79,16 @@
 </template>
 
 <style scoped>
+
+.f-title {
+    color: antiquewhite;
+    font-size: 46px;
+}
+
+.f-body {
+    color: antiquewhite;
+}
+
 .v-enter-active,
 .v-leave-active {
     transition: opacity 300ms cubic-bezier(0.1, 0.4, 0.12, 1);
@@ -101,16 +111,16 @@
     bottom:0;
     right:0;
     left:0;
-    // TODO HERE!!!!! FIX ANIMATION
 }
 
 .fullscreen-card-display {
     position:fixed;
-    top:4vmin;
-    left:4vmin;
-    bottom: 4vmin;
-    right: 4vmin;
-    background-color:aqua; 
+    top:calc(4vmin + 1px);
+    left:calc(4vmin + 1px);
+    bottom: calc(4vmin + 1px);
+    right: calc(4vmin + 1px);
+    background-color: #292929; 
+    padding: 4vmin;
     z-index: 10000;
 }
 
@@ -119,8 +129,10 @@
     width: 10px;
     z-index: 20;
     height: 10px;
-    top: 2vmin;
-    right: 2vmin;
+    top: 4vmin;
+    right: 4vmin;
+    transform: translate3d(-70%, -50%, 0);
+    color: antiquewhite;
 }
 
 .focused {
@@ -161,7 +173,7 @@
 }
 
 .card-content {
-    padding: 2vmin;
+    padding: 3vmin;
 }
 
 .card:hover {
