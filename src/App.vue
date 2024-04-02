@@ -42,7 +42,6 @@ export default {
     <Frame></Frame>
     <Mask></Mask>
     <UnifiedContent></UnifiedContent>
-    <ThreeJS></ThreeJS>
 </template>
 
 <style scoped>
