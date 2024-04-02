@@ -1,10 +1,10 @@
 <script setup>
 import Frame from './components/Frame.vue'
-import Header from './components/Header.vue'
 import Content from './components/Content.vue'
 import Mask from './components/Mask.vue'
 import LoadIn from './components/LoadIn.vue'
 import UnifiedContent from './components/UnifiedContent.vue'
+import ThreeJS from './components/ThreeJS.vue'
 </script>
 
 <script>
@@ -42,6 +42,7 @@ export default {
     <Frame></Frame>
     <Mask></Mask>
     <UnifiedContent></UnifiedContent>
+    <ThreeJS></ThreeJS>
 </template>
 
 <style scoped>
